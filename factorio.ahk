@@ -1,17 +1,15 @@
 #Persistent
 #MaxThreads 2
 
-deadzone := 0.15
-
+deadzone := 0.0
 
 toggle := 0
-
 
 ;SetTimer, Run, 50
 	
 Run:	
 {	
-	if WinActive("ahk_class ALEX")
+	if WinActive("ahk_class Factorio")
 	{
 		MouseGetPos, x,y 
 		WinGetPos , , , width, height
@@ -84,7 +82,7 @@ Run:
 	;sleep 1000
 }
 
-#IfWinActive, ahk_class ALEX
+#IfWinActive, ahk_class Factorio
 ~RButton::
 	toggle := true
 	state := GetKeyState("RButton", "D") 
@@ -96,11 +94,10 @@ Run:
 	}
 	;FileAppend, down finished`n, D:\ahklog.txt
 	return
-#IfWinActive, ahk_class ALEX	
+#IfWinActive, ahk_class Factorio
 ~RButton Up::
 	toggle := false
 	state := GetKeyState("RButton", "D") 
 	;FileAppend, up:  %class% state: %state%`n, D:\ahklog.txt
 	GoSub, Run
 	return
-
